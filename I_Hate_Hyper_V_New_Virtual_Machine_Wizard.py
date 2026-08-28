@@ -8,12 +8,12 @@ def run(command = "cls"):
 def delay(secs = 1):
     time.sleep(secs)
 #-------------------------------------------------------#
-idiot_count = 0
-def check_idiot_count():
-    global idiot_count
-    if idiot_count >10:
+invalid_action_count = 0
+def check_invalid_action_count():
+    global invalid_action_count
+    if invalid_action_count >10:
         run()
-        print("This program is not designed for idiots.\n")
+        print("This program is designed for Pros.\n")
         exit()
 #-------------------------------------------------------#
 vm_name = "Not Configured"
@@ -34,25 +34,26 @@ vm_storage_configured = False
 #-------------------------------------------------------#
 #Name
 def get_vm_name():
+    global invalid_action_count
     global vm_name
     global vm_name_configured
     while True:
-        check_idiot_count()
         vm_name = input("Name of the virtual machine: ").replace(" ","_")
-        run()
         if vm_name == "":
             print("VM must have a name.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         else:
+            run()
             vm_name_configured = True
             break
 #-------------------------------------------------------#
 #VM Generation
 def get_vm_gen():
+    global invalid_action_count
     global vm_gen
     global vm_gen_configured
     while True:
@@ -61,22 +62,25 @@ def get_vm_gen():
         print("(2)    Generation 2")
         vm_gen = input("Virtual machine's Configuration Version: ")
         if vm_gen == "1":
+            run()
             vm_gen_configured = True
             break
         elif vm_gen == "2":
+            run()
             vm_gen_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         run()
 #-------------------------------------------------------#
 #Cpu core(s) amount
 def get_vm_cpu():
+    global invalid_action_count
     global vm_cpu
     global vm_cpu_configured
     while True:
@@ -84,26 +88,28 @@ def get_vm_cpu():
         try:
             int(vm_cpu)
             if int(vm_cpu) >= 1:
+                run()
                 vm_cpu_configured = True
                 break
             else:
                 print("Please insert a number > 0.")
-                idiot_count += 1
+                invalid_action_count += 1
                 delay(2)
-                check_idiot_count()
                 run()
+                check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         run()
 #-------------------------------------------------------#
 #Ram amount
 def get_vm_ram_unit():
+    global invalid_action_count
     global vm_ram_unit
     global vm_ram_unit_configured
     while True:
@@ -126,27 +132,28 @@ def get_vm_ram_unit():
     #        break
         if vm_ram_unit == "2":
             vm_ram_unit = "MB"
-            vm_ram_unit_configured = True
             run()
+            vm_ram_unit_configured = True
             break
         elif vm_ram_unit == "3":
             vm_ram_unit = "GB"
-            vm_ram_unit_configured = True
             run()
+            vm_ram_unit_configured = True
             break
         elif vm_ram_unit == "4":
             vm_ram_unit = "TB"
-            vm_ram_unit_configured = True
             run()
+            vm_ram_unit_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
 def get_vm_ram():
+    global invalid_action_count
     global vm_ram
     global vm_ram_configured
     while True:
@@ -158,22 +165,23 @@ def get_vm_ram():
                 break
             else:
                 print("Please insert a number > 0.")
-                idiot_count += 1
+                invalid_action_count += 1
                 delay(2)
-                check_idiot_count()
                 run()
+                check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         run()
 #-------------------------------------------------------#
 #Disk space
 def get_vm_storage_unit():
+    global invalid_action_count
     global vm_storage_unit
     global vm_storage_unit_configured
     while True:
@@ -186,33 +194,39 @@ def get_vm_storage_unit():
         vm_storage_unit = input("Virtual machine's storage unit (Just Number): ")
     #    if vm_storage_unit == "0":
     #        vm_storage_unit == "B"
+    #            run()
     #        vm_storage_unit_configured = True
     #        break
     #    if vm_storage_unit == "1":
     #        vm_storage_unit = "KB"
+    #            run()
     #        vm_storage_unit_configured = True
     #        break
         if vm_storage_unit == "2":
             vm_storage_unit = "MB"
+            run()
             vm_storage_unit_configured = True
             break
         elif vm_storage_unit == "3":
             vm_storage_unit = "GB"
+            run()
             vm_storage_unit_configured = True
             break
         elif vm_storage_unit == "4":
             vm_storage_unit = "TB"
+            run()
             vm_storage_unit_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         run()
 def get_vm_storage():
+    global invalid_action_count
     global vm_storage
     global vm_storage_configured
     while True:
@@ -220,23 +234,26 @@ def get_vm_storage():
         try:
             int(vm_storage)
             if int(vm_storage) >= 1:
+                run()
                 vm_storage_configured = True
                 break
             else:
                 print("Please insert a number > 0.")
-                idiot_count += 1
+                invalid_action_count += 1
                 delay(2)
-                check_idiot_count()
                 run()
+                check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
-            check_idiot_count()
             run()
+            check_invalid_action_count()
             pass
         run()
+#-------------------------------------------------------#
+#Network Adapter (Planning)
 #-------------------------------------------------------#
 #Main UI
 def print_main_ui():
@@ -265,6 +282,7 @@ def print_main_ui():
 while True:
     print_main_ui()
     action = input().upper()
+    run()
     if action == "0":
         get_vm_name()
         pass
@@ -285,49 +303,58 @@ while True:
     elif action == "C":
         if vm_name_configured != True:
             print("Please config virtual machine's name first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_gen_configured != True:
             print("Please config virtual machine's configuration version first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_cpu_configured != True:
             print("Please config virtual machine's cpu core number first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_ram_unit_configured != True:
             print("Please config virtual machine's ram unit first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_ram_configured != True:
             print("Please config virtual machine's ram amount first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_storage_unit_configured != True:
             print("Please config virtual machine's storage unit first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         elif vm_storage_configured != True:
             print("Please config virtual machine's storage size first.")
-            idiot_count += 1
+            invalid_action_count += 1
             delay(2)
             run()
+            check_invalid_action_count()
             pass
         else: #COMMANDS
-            is_failed = run(f"powershell -Command \"New-VM -Name \"{vm_name}\" -ProcessorCount {vm_cpu} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -Generation {vm_gen} -NewVHDPath \"{vm_name}.vhdx\" -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
+            is_failed = os.system(f"powershell -Command \"New-VM -Name \"{vm_name}\" -MemoryStartupBytes {vm_ram}{vm_ram_unit} -Generation {vm_gen} -NewVHDPath \"{vm_name}.vhdx\" -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
+            run()
             if is_failed == 0:
+                run(f"powershell -Command \"Set-VMProcessor \"{vm_name}\" -Count {vm_cpu}\"")
                 print("Press Enter to exit")
                 input("")
                 exit()
@@ -335,12 +362,14 @@ while True:
                 print(f"Failed")
                 print(f"Press Enter to go back")
                 input("")
+                run()
                 pass
     elif action == "Q":
         exit()
     else:
         print("Please choose 1 option to do")
-        idiot_count += 1
+        invalid_action_count += 1
         delay(2)
         run()
+        check_invalid_action_count()
         pass

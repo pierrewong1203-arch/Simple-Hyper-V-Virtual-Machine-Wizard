@@ -1,4 +1,3 @@
-from curses.ascii import isdigit
 import os
 import time
 #-------------------------------------------------------#
@@ -81,8 +80,7 @@ def get_vm_gen():
             pass
         run()
 #-------------------------------------------------------#
-#VM Config Version (working)
-'''
+#VM Config Version
 def get_vm_config_version():
     global invalid_action_count
     global vm_config_version
@@ -90,8 +88,17 @@ def get_vm_config_version():
     while True:
         print("Virtual Machine's configuration versions")
         vm_config_version = input("Version: ")
-        float()
-'''
+        try:
+            float(vm_config_version)
+            run()
+            vm_config_version_configured = True
+            break
+        except ValueError:
+            print("Config Version is like 10.0 11.0, is a float.")
+            invalid_action_count += 1
+            delay(2)
+            run()
+            pass
 #-------------------------------------------------------#
 #Cpu core(s) amount
 def get_vm_cpu():
@@ -277,16 +284,18 @@ def print_main_ui():
     print("")
     print(f"Virtual Machine's Name is                  : {vm_name}")
     print(f"Virtual Machine's Generation is            : {vm_gen}")
+    print(f"Virtual Machine's Configuration Version is : {vm_config_version}")
     print(f"Virtual Machine's Cpu Core Number is       : {vm_cpu}")
     print(f"Virtual Machine's RAM is                   : {vm_ram}{vm_ram_unit}")
     print(f"Virtual Machine's Storage is               : {vm_storage}{vm_storage_unit}")
     print("")
     print("Press the number in () and ENTER to config:")
     print("(0) Virtual Machine's Name")
-    print("(1) Virtual Machine's Configuration Version")
-    print("(2) Virtual Machine's Cpu Core Number")
-    print("(3) Virtual Machine's RAM")
-    print("(4) Virtual Machine's Storage")
+    print("(1) Virtual Machine's Generation")
+    print("(2) Virtual Machine's Configuration Version")
+    print("(3) Virtual Machine's Cpu Core Number")
+    print("(4) Virtual Machine's RAM")
+    print("(5) Virtual Machine's Storage")
     print("")
     print("Press the letter in () and ENTER to:")
     print("(C) Create The VM")
@@ -305,13 +314,16 @@ while True:
         get_vm_gen()
         pass
     elif action == "2":
-        get_vm_cpu()
+        get_vm_config_version()
         pass
     elif action == "3":
+        get_vm_cpu()
+        pass
+    elif action == "4":
         get_vm_ram_unit()
         get_vm_ram()
         pass
-    elif action == "4":
+    elif action == "5":
         get_vm_storage_unit()
         get_vm_storage()
         pass
@@ -324,6 +336,13 @@ while True:
             check_invalid_action_count()
             pass
         elif vm_gen_configured != True:
+            print("Please config virtual machine's generation first.")
+            invalid_action_count += 1
+            delay(2)
+            run()
+            check_invalid_action_count()
+            pass
+        elif vm_config_version_configured != True:
             print("Please config virtual machine's configuration version first.")
             invalid_action_count += 1
             delay(2)
@@ -366,11 +385,11 @@ while True:
             check_invalid_action_count()
             pass
         else: #COMMANDS
-            is_failed = os.system(f"powershell -Command \"New-VM -Name \"{vm_name}\" -MemoryStartupBytes {vm_ram}{vm_ram_unit} -Generation {vm_gen} -NewVHDPath \"{vm_name}.vhdx\" -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
+            is_failed = os.system(f"powershell -Command \"New-VM -Name \"{vm_name}\" -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -NewVHDPath \"{vm_name}.vhdx\" -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
             run()
             if is_failed == 0:
                 run(f"powershell -Command \"Set-VMProcessor \"{vm_name}\" -Count {vm_cpu}\"")
-                print("Press Enter to exit")
+                print("Done, Press Enter to exit")
                 input("")
                 exit()
             else:

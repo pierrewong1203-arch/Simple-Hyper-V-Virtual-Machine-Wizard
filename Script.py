@@ -183,6 +183,7 @@ def get_vm_ram():
         try:
             int(vm_ram)
             if int(vm_ram) >= 1:
+                run()
                 vm_ram_configured = True
                 break
             else:

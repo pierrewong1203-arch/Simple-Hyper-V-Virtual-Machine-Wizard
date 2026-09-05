@@ -17,22 +17,22 @@ def check_invalid_action_count():
         exit()
 #-------------------------------------------------------#
 vm_name = "Not Configured"
-vm_gen = "Not Configured"
-vm_config_version = "Not Configured"
-vm_cpu = "Not Configured"
-vm_ram_unit = ""
-vm_ram = "Not Configured"
-vm_storage_unit = ""
-vm_storage = "Not Configured"
+vm_gen = "1"
+vm_config_version = "8.1"
+vm_cpu = "4"
+vm_ram_unit = "GB"
+vm_ram = "4"
+vm_storage_unit = "GB"
+vm_storage = "128"
 #-------------------------------------------------------#
 vm_name_configured = False
-vm_gen_configured = False
-vm_config_version_configured = False
-vm_cpu_configured = False
-vm_ram_unit_configured = False
-vm_ram_configured = False
-vm_storage_unit_configured = False
-vm_storage_configured = False
+vm_gen_configured = True
+vm_config_version_configured = True
+vm_cpu_configured = True
+vm_ram_unit_configured = True
+vm_ram_configured = True
+vm_storage_unit_configured = True
+vm_storage_configured = True
 #-------------------------------------------------------#
 #Name
 def get_vm_name():
@@ -40,7 +40,7 @@ def get_vm_name():
     global vm_name
     global vm_name_configured
     while True:
-        vm_name = input("Name of the virtual machine: ").replace(" ","_")
+        vm_name = input("Name of the virtual machine: ")
         if vm_name == "":
             print("VM must have a name.")
             invalid_action_count += 1
@@ -386,13 +386,15 @@ while True:
             check_invalid_action_count()
             pass
         else: #COMMANDS
-            is_failed = os.system(f"powershell -Command \"New-VM -Name \"{vm_name}\" -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -NewVHDPath \"{vm_name}.vhdx\" -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
+            is_failed = os.system(f"powershell -Command \"New-VM -Name '{vm_name}' -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -NewVHDPath '{vm_name}.vhdx' -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
+            #input()
             run()
             if is_failed == 0:
-                run(f"powershell -Command \"Set-VMProcessor \"{vm_name}\" -Count {vm_cpu}\"")
+                run(f"powershell -Command \"Set-VMProcessor '{vm_name}' -Count {vm_cpu}\"")
                 print("Done, Press Enter to exit")
                 input("")
-                exit()
+                run()
+                pass
             else:
                 print(f"Failed")
                 print(f"Press Enter to go back")

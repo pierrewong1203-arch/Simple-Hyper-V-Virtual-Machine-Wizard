@@ -393,6 +393,7 @@ while True:
                 clean_screen()
                 continue
             else:
+                clean_screen()
                 error = os.system(f"Powershell -Command \"{vm_storage_command}\"")
                 if error != 0:
                     print(f"Something Went Wrong")

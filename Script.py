@@ -9,14 +9,14 @@ def delay(secs = 1):
     time.sleep(secs)
 #Preset-------------------------------------------------#
 vm_name = "Not Configured"
-vm_gen = "1"
+vm_gen = "2"
 vm_config_version = "8.1"
-vm_cpu = "2"
+vm_cpu = "4"
 vm_cpu_enabled_nested = False
 vm_ram_unit = "GB"
-vm_ram = "2"
+vm_ram = "8"
 vm_storage_unit = "GB"
-vm_storage = "64"
+vm_storage = "128"
 vm_storage_logical = "512"
 vm_storage_physical = "4096"
 #Configured-(Preset-Use)--------------------------------#
@@ -32,7 +32,6 @@ vm_storage_configured = True
 #-------------------------------------------------------#
 #Name
 def get_vm_name():
-    global invalid_action_count
     global vm_name
     global vm_name_configured
     while True:
@@ -49,7 +48,6 @@ def get_vm_name():
 #-------------------------------------------------------#
 #VM Generation
 def get_vm_gen():
-    global invalid_action_count
     global vm_gen
     global vm_gen_configured
     while True:
@@ -74,7 +72,6 @@ def get_vm_gen():
 #-------------------------------------------------------#
 #VM Config Version
 def get_vm_config_version():
-    global invalid_action_count
     global vm_config_version
     global vm_config_version_configured
     while True:
@@ -93,7 +90,6 @@ def get_vm_config_version():
 #-------------------------------------------------------#
 #Cpu core(s) amount
 def get_vm_cpu():
-    global invalid_action_count
     global vm_cpu
     global vm_cpu_configured
     while True:
@@ -137,7 +133,6 @@ def get_vm_enabled_nested():
 #-------------------------------------------------------#
 #Ram amount
 def get_vm_ram_unit():
-    global invalid_action_count
     global vm_ram_unit
     global vm_ram_unit_configured
     while True:
@@ -179,7 +174,6 @@ def get_vm_ram_unit():
             clean_screen()
             continue
 def get_vm_ram():
-    global invalid_action_count
     global vm_ram
     global vm_ram_configured
     while True:
@@ -204,7 +198,6 @@ def get_vm_ram():
 #-------------------------------------------------------#
 #Disk space
 def get_vm_storage_unit():
-    global invalid_action_count
     global vm_storage_unit
     global vm_storage_unit_configured
     while True:
@@ -247,7 +240,6 @@ def get_vm_storage_unit():
             continue
         clean_screen()
 def get_vm_storage():
-    global invalid_action_count
     global vm_storage
     global vm_storage_configured
     while True:

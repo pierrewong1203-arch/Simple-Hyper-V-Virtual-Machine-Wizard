@@ -4,6 +4,12 @@ Please only use create virtual machine option after config all.
 
 Before Use:
 Set vhd_path to Folder where you store .vhdx and .vhd .
+And another \ before any \ in the path and at the end,
+Example:
+Before
+"C:\ProgramData\Microsoft\Windows\Virtual Hard Disks"
+After
+"C:\\ProgramData\\Microsoft\\Windows\\Virtual Hard Disks\\"
 
 Do Not Touch "(B)  Virtual Harddisk's Sector" Unless You Know What is It.
 

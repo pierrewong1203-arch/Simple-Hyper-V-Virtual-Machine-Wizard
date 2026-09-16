@@ -2,7 +2,7 @@ import os
 import time
 #-------------------------------------------------------#
 #Default is cls
-def run(command = "cls"):
+def clean_screen(command = "cls"):
     os.system(command)
 #Default is 1 sec
 def delay(secs = 1):
@@ -12,23 +12,25 @@ invalid_action_count = 0
 def check_invalid_action_count():
     global invalid_action_count
     if invalid_action_count >10:
-        run()
+        clean_screen()
         print("This program is designed for Pros.\n")
         exit()
-#-------------------------------------------------------#
+#Preset-------------------------------------------------#
 vm_name = "Not Configured"
 vm_gen = "1"
 vm_config_version = "8.1"
-vm_cpu = "4"
+vm_cpu = "2"
+vm_cpu_enabled_nested = False
 vm_ram_unit = "GB"
-vm_ram = "4"
+vm_ram = "2"
 vm_storage_unit = "GB"
-vm_storage = "128"
-#-------------------------------------------------------#
+vm_storage = "64"
+#Configured-(Preset-Use)--------------------------------#
 vm_name_configured = False
 vm_gen_configured = True
 vm_config_version_configured = True
 vm_cpu_configured = True
+vm_cpu_enabled_nested_configured = True
 vm_ram_unit_configured = True
 vm_ram_configured = True
 vm_storage_unit_configured = True
@@ -45,11 +47,11 @@ def get_vm_name():
             print("VM must have a name.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         else:
-            run()
+            clean_screen()
             vm_name_configured = True
             break
 #-------------------------------------------------------#
@@ -64,21 +66,21 @@ def get_vm_gen():
         print("(2)    Generation 2")
         vm_gen = input("Virtual machine's Generation: ")
         if vm_gen == "1":
-            run()
+            clean_screen()
             vm_gen_configured = True
             break
         elif vm_gen == "2":
-            run()
+            clean_screen()
             vm_gen_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
-        run()
+        clean_screen()
 #-------------------------------------------------------#
 #VM Config Version
 def get_vm_config_version():
@@ -90,14 +92,14 @@ def get_vm_config_version():
         vm_config_version = input("Version: ")
         try:
             float(vm_config_version)
-            run()
+            clean_screen()
             vm_config_version_configured = True
             break
         except ValueError:
             print("Config Version is like 10.0 11.0, is a float.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             pass
 #-------------------------------------------------------#
 #Cpu core(s) amount
@@ -110,24 +112,24 @@ def get_vm_cpu():
         try:
             int(vm_cpu)
             if int(vm_cpu) >= 1:
-                run()
+                clean_screen()
                 vm_cpu_configured = True
                 break
             else:
                 print("Please insert a number > 0.")
                 invalid_action_count += 1
                 delay(2)
-                run()
+                clean_screen()
                 check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
-        run()
+        clean_screen()
 #-------------------------------------------------------#
 #Ram amount
 def get_vm_ram_unit():
@@ -145,33 +147,33 @@ def get_vm_ram_unit():
     #    if vm_ram_unit == "0":
     #        vm_ram_unit = "B"
     #        vm_ram_unit_configured = True
-    #        run()
+    #        clean_screen()
     #        break
     #    if vm_ram_unit == "1":
     #        vm_ram_unit = "KB"
     #        vm_ram_unit_configured = True
-    #        run()
+    #        clean_screen()
     #        break
         if vm_ram_unit == "2":
             vm_ram_unit = "MB"
-            run()
+            clean_screen()
             vm_ram_unit_configured = True
             break
         elif vm_ram_unit == "3":
             vm_ram_unit = "GB"
-            run()
+            clean_screen()
             vm_ram_unit_configured = True
             break
         elif vm_ram_unit == "4":
             vm_ram_unit = "TB"
-            run()
+            clean_screen()
             vm_ram_unit_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
 def get_vm_ram():
@@ -183,24 +185,24 @@ def get_vm_ram():
         try:
             int(vm_ram)
             if int(vm_ram) >= 1:
-                run()
+                clean_screen()
                 vm_ram_configured = True
                 break
             else:
                 print("Please insert a number > 0.")
                 invalid_action_count += 1
                 delay(2)
-                run()
+                clean_screen()
                 check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
-        run()
+        clean_screen()
 #-------------------------------------------------------#
 #Disk space
 def get_vm_storage_unit():
@@ -217,37 +219,37 @@ def get_vm_storage_unit():
         vm_storage_unit = input("Virtual machine's storage unit (Just Number): ")
     #    if vm_storage_unit == "0":
     #        vm_storage_unit == "B"
-    #            run()
+    #            clean_screen()
     #        vm_storage_unit_configured = True
     #        break
     #    if vm_storage_unit == "1":
     #        vm_storage_unit = "KB"
-    #            run()
+    #            clean_screen()
     #        vm_storage_unit_configured = True
     #        break
         if vm_storage_unit == "2":
             vm_storage_unit = "MB"
-            run()
+            clean_screen()
             vm_storage_unit_configured = True
             break
         elif vm_storage_unit == "3":
             vm_storage_unit = "GB"
-            run()
+            clean_screen()
             vm_storage_unit_configured = True
             break
         elif vm_storage_unit == "4":
             vm_storage_unit = "TB"
-            run()
+            clean_screen()
             vm_storage_unit_configured = True
             break
         else:
             print("Please insert number to choose between each option.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
-        run()
+        clean_screen()
 def get_vm_storage():
     global invalid_action_count
     global vm_storage
@@ -257,74 +259,70 @@ def get_vm_storage():
         try:
             int(vm_storage)
             if int(vm_storage) >= 1:
-                run()
+                clean_screen()
                 vm_storage_configured = True
                 break
             else:
                 print("Please insert a number > 0.")
                 invalid_action_count += 1
                 delay(2)
-                run()
+                clean_screen()
                 check_invalid_action_count()
                 pass
         except ValueError:
             print("Please insert a integer.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
-        run()
+        clean_screen()
 #-------------------------------------------------------#
 #Network Adapter (Planning)
 #-------------------------------------------------------#
 #Main UI
 def print_main_ui():
     print(time.strftime("%Y/%m/%d"))
-    print("Nice to meet you, Administrator.")
-    print("")
-    print(f"Virtual Machine's Name is                  : {vm_name}")
-    print(f"Virtual Machine's Generation is            : {vm_gen}")
-    print(f"Virtual Machine's Configuration Version is : {vm_config_version}")
-    print(f"Virtual Machine's Cpu Core Number is       : {vm_cpu}")
-    print(f"Virtual Machine's RAM is                   : {vm_ram}{vm_ram_unit}")
-    print(f"Virtual Machine's Storage is               : {vm_storage}{vm_storage_unit}")
-    print("")
-    print("Press the number in () and ENTER to config:")
-    print("(0) Virtual Machine's Name")
-    print("(1) Virtual Machine's Generation")
-    print("(2) Virtual Machine's Configuration Version")
-    print("(3) Virtual Machine's Cpu Core Number")
-    print("(4) Virtual Machine's RAM")
-    print("(5) Virtual Machine's Storage")
-    print("")
-    print("Press the letter in () and ENTER to:")
-    print("(C) Create The VM")
-    print("(Q) Quit")
-    print()
+    print(f"Nice to meet you, Administrator.")
+    print(f"")
+    print(f"Press the number in () and ENTER to config:")
+    print(f"(1)  Virtual Machine's Name is                  : {vm_name}")
+    print(f"(2)  Virtual Machine's Generation is            : {vm_gen}")
+    print(f"(3)  Virtual Machine's Configuration Version is : {vm_config_version}")
+    print(f"(4)  Virtual Machine's Cpu Core Number is       : {vm_cpu}")
+    print(f"(5)  Virtual Machine's RAM is                   : {vm_ram}{vm_ram_unit}")
+    print(f"(6)  Virtual Machine's Storage is               : {vm_storage}{vm_storage_unit}")
+    print(f"")
+    #print(f"Advanced Config")
+    #print(f"(A)  Nested Virtualization is Enabled           : {vm_cpu_enabled_nested}")
+    #print(f"(B)  Virtual Harddisk's Sector           Logical: {}")
+    #print(f"")
+    print(f"Press the letter in () and ENTER to:")
+    print(f"(C)  Create The VM")
+    print(f"")
 #-------------------------------------------------------#
 #Main loop
 while True:
     print_main_ui()
     action = input().upper()
-    run()
-    if action == "0":
+    clean_screen()
+    if action == "1":
         get_vm_name()
         pass
-    elif action == "1":
+    elif action == "2":
         get_vm_gen()
         pass
-    elif action == "2":
+    elif action == "3":
         get_vm_config_version()
         pass
-    elif action == "3":
+    elif action == "4":
         get_vm_cpu()
         pass
-    elif action == "4":
+    elif action == "5":
         get_vm_ram_unit()
         get_vm_ram()
         pass
-    elif action == "5":
+    elif action == "6":
         get_vm_storage_unit()
         get_vm_storage()
         pass
@@ -333,80 +331,80 @@ while True:
             print("Please config virtual machine's name first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_gen_configured != True:
             print("Please config virtual machine's generation first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_config_version_configured != True:
             print("Please config virtual machine's configuration version first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_cpu_configured != True:
             print("Please config virtual machine's cpu core number first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_ram_unit_configured != True:
             print("Please config virtual machine's ram unit first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_ram_configured != True:
             print("Please config virtual machine's ram amount first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_storage_unit_configured != True:
             print("Please config virtual machine's storage unit first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         elif vm_storage_configured != True:
             print("Please config virtual machine's storage size first.")
             invalid_action_count += 1
             delay(2)
-            run()
+            clean_screen()
             check_invalid_action_count()
             pass
         else: #COMMANDS
             is_failed = os.system(f"powershell -Command \"New-VM -Name '{vm_name}' -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -NewVHDPath '{vm_name}.vhdx' -NewVHDSizeBytes {vm_storage}{vm_storage_unit}\"")
             #input()
-            run()
+            #clean_screen()
+            print("\n\n")
             if is_failed == 0:
-                run(f"powershell -Command \"Set-VMProcessor '{vm_name}' -Count {vm_cpu}\"")
-                print("Done, Press Enter to exit")
+                os.system(f"powershell -Command \"Set-VMProcessor '{vm_name}' -Count {vm_cpu}\"")
+                print("Done, Press Enter Go Back")
                 input("")
-                run()
+                vm_name = "Not Configured"
+                vm_name_configured = False
+                clean_screen()
                 pass
             else:
-                print(f"Failed")
-                print(f"Press Enter to go back")
+                print("Failed, Press Enter To Go Back")
                 input("")
-                run()
+                clean_screen()
                 pass
-    elif action == "Q":
-        exit()
     else:
         print("Please choose 1 option to do")
         invalid_action_count += 1
         delay(2)
-        run()
+        clean_screen()
         check_invalid_action_count()
         pass

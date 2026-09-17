@@ -137,22 +137,10 @@ def get_vm_ram_unit():
     global vm_ram_unit_configured
     while True:
         print("Ram Unit")
-    #    print("(0)    B") #(As extent use)(I don't think powershell support this)
-    #    print("(1)    KB")
         print("(2)    MB")
         print("(3)    GB")
         print("(4)    TB")
         vm_ram_unit = input("Virtual Machine's Ram unit (Just Number): ")
-    #    if vm_ram_unit == "0":
-    #        vm_ram_unit = "B"
-    #        vm_ram_unit_configured = True
-    #        clean_screen()
-    #        break
-    #    if vm_ram_unit == "1":
-    #        vm_ram_unit = "KB"
-    #        vm_ram_unit_configured = True
-    #        clean_screen()
-    #        break
         if vm_ram_unit == "2":
             vm_ram_unit = "MB"
             clean_screen()
@@ -202,22 +190,10 @@ def get_vm_storage_unit():
     global vm_storage_unit_configured
     while True:
         print("Storage Unit")
-    #    print("(0)    B")
-    #    print("(1)    KB")
         print("(2)    MB")
         print("(3)    GB")
         print("(4)    TB")
         vm_storage_unit = input("Virtual machine's storage unit (Just Number): ")
-    #    if vm_storage_unit == "0":
-    #        vm_storage_unit == "B"
-    #            clean_screen()
-    #        vm_storage_unit_configured = True
-    #        break
-    #    if vm_storage_unit == "1":
-    #        vm_storage_unit = "KB"
-    #            clean_screen()
-    #        vm_storage_unit_configured = True
-    #        break
         if vm_storage_unit == "2":
             vm_storage_unit = "MB"
             clean_screen()
@@ -265,18 +241,32 @@ def get_vm_storage_sector():
     global vm_storage_logical
     global vm_storage_physical
     while True:
-        print("Only Insert Number")
-        vm_storage_logical = input("Logical Sector Byte   (Default:  512): ")
-        vm_storage_physical = input("physical Sector Byte: (Default: 4096): ")
-        try:
-            int(vm_storage_logical)
-            int(vm_storage_physical)
-            break
-        except ValueError:
-            print("Please insert a integer, Press Enter To Try again")
-            input()
+        print("Virtual Harddisk's Sector (Type - Logical/Physical).")
+        print("(A)  512n - 512/512")
+        print("(B)  512e - 512/4096")
+        print("(C) 4096n - 4096/4096")
+        choice = input("Choice: ").upper()
+        if choice == "A":
+            vm_storage_logical = "512"
+            vm_storage_physical = "512"
             clean_screen()
-            continue 
+            break
+        elif choice == "B" or choice == "":
+            vm_storage_logical = "512"
+            vm_storage_physical = "4096"
+            clean_screen
+            break
+        elif choice == "C":
+            vm_storage_logical = "4096"
+            vm_storage_physical = "4096"
+            clean_screen
+            break
+        else:
+            print("\nPlease Choose One Between Above Options.")
+            input("Press Enter To Try Again.")
+            clean_screen
+            continue
+
 #-------------------------------------------------------#
 #Network Adapter (Planning)
 #-------------------------------------------------------#

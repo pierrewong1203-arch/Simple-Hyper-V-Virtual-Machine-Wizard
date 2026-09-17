@@ -241,7 +241,7 @@ def get_vm_storage_sector():
     global vm_storage_logical
     global vm_storage_physical
     while True:
-        print("Virtual Harddisk's Sector (Type - Logical/Physical).")
+        print("Virtual Harddisk's Sector (Type - Logical/Physical). (Press Enter is 512e)")
         print("(A)  512n - 512/512")
         print("(B)  512e - 512/4096")
         print("(C) 4096n - 4096/4096")
@@ -368,6 +368,8 @@ while True:
             vm_storage_command = f"New-VHD '{vhd_path}{vm_name}.vhdx' -Dynamic -SizeBytes {vm_storage}{vm_storage_unit} -PhysicalSectorSizeBytes {vm_storage_physical} -LogicalSectorSizeBytes {vm_storage_logical}"
             vm_command = f"New-VM '{vm_name}' -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -VHDPath '{vhd_path}{vm_name}.vhdx'"
             vm_cpu_command = f"Set-VMProcessor '{vm_name}' -Count {vm_cpu} -ExposeVirtualizationExtensions ${str(vm_cpu_enabled_nested).lower()}"
+            if vm_cpu_enabled_nested == True:
+                vm_nic_command = f"Set-VMNetworkAdapter '{vm_name}' -MacAddressSpoofing On"
             check = os.system(f"Powershell -Command \"Get-VM '{vm_name}'\"")
             if check == 0: #No error is 0, mean have this vm.
                 print(f"Virtual Machine With Name \"{vm_name}\" Already Exist, Please Chenage Name First.")
@@ -378,20 +380,27 @@ while True:
                 clean_screen()
                 error = os.system(f"Powershell -Command \"{vm_storage_command}\"")
                 if error != 0:
-                    print(f"Something Went Wrong")
+                    print(f"Something Went Wrong (Trying To Make VHD)")
                     input("Press Enter To Go Back")
                     clean_screen()
                     continue
                 error = os.system(f"Powershell -Command \"{vm_command}\"")
                 if error != 0:
-                    print(f"Something Went Wrong")
+                    print(f"Something Went Wrong (Trying To Make VM)")
                     print(f"Remember To Remove The Old Virtual Harddisk \"{vhd_path}{vm_name}.vhdx\"")
                     input("Press Enter To Go Back")
                     clean_screen()
                     continue
                 error = os.system(f"Powershell -Command \"{vm_cpu_command}\"")
                 if error != 0:
-                    print(f"Something Went Wrong")
+                    print(f"Something Went Wrong (Trying To Set CPU Cores Amount Or Enable Nested CPU)")
+                    print(f"Remember To Remove The Old Virtual Harddisk \"{vhd_path}{vm_name}.vhdx\"")
+                    input("Press Enter To Go Back")
+                    clean_screen()
+                    continue
+                error = os.system(f"Powershell -Command \"{vm_nic_command}\"")
+                if error != 0:
+                    print(f"Something Went Wrong (Trying To Enable MacAddressSpoofing)")
                     print(f"Remember To Remove The Old Virtual Harddisk \"{vhd_path}{vm_name}.vhdx\"")
                     input("Press Enter To Go Back")
                     clean_screen()

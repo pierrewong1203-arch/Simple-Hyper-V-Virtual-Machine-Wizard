@@ -120,9 +120,11 @@ def get_vm_enabled_nested():
         vm_cpu_enabled_nested = input("(Y/N): ").upper()
         if vm_cpu_enabled_nested == "Y":
             vm_cpu_enabled_nested = True
+            clean_screen()
             break
         elif vm_cpu_enabled_nested == "N":
             vm_cpu_enabled_nested = False
+            clean_screen
             break
         else:
             print("")
@@ -368,6 +370,7 @@ while True:
             vm_storage_command = f"New-VHD '{vhd_path}{vm_name}.vhdx' -Dynamic -SizeBytes {vm_storage}{vm_storage_unit} -PhysicalSectorSizeBytes {vm_storage_physical} -LogicalSectorSizeBytes {vm_storage_logical}"
             vm_command = f"New-VM '{vm_name}' -Generation {vm_gen} -Version {vm_config_version} -MemoryStartupBytes {vm_ram}{vm_ram_unit} -VHDPath '{vhd_path}{vm_name}.vhdx'"
             vm_cpu_command = f"Set-VMProcessor '{vm_name}' -Count {vm_cpu} -ExposeVirtualizationExtensions ${str(vm_cpu_enabled_nested).lower()}"
+            vm_nic_command = f"Set-VMNetworkAdapter '{vm_name}' -MacAddressSpoofing Off"
             if vm_cpu_enabled_nested == True:
                 vm_nic_command = f"Set-VMNetworkAdapter '{vm_name}' -MacAddressSpoofing On"
             check = os.system(f"Powershell -Command \"Get-VM '{vm_name}'\"")

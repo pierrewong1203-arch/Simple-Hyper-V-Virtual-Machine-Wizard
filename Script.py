@@ -256,12 +256,12 @@ def get_vm_storage_sector():
         elif choice == "B" or choice == "":
             vm_storage_logical = "512"
             vm_storage_physical = "4096"
-            clean_screen
+            clean_screen()
             break
         elif choice == "C":
             vm_storage_logical = "4096"
             vm_storage_physical = "4096"
-            clean_screen
+            clean_screen()
             break
         else:
             print("\nPlease Choose One Between Above Options.")
